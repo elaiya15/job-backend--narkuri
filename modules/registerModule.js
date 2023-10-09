@@ -4,12 +4,15 @@ const jwt = require("jsonwebtoken");
 const joi = require("joi");
 
 
- exports.signup = async (req, res, next) => {
+exports.signup = async (req, res, next) => {
   try {
     const validation = joi.object({
       email: joi.string().email().trim(true).required(),
       password: joi.string().min(4).trim(true).required(),
-      // confirmpassword: joi.string().min(4).trim(true).required(),
+       number: joi.string().min(10).trim(true).required(),
+      firstname: joi.string(),
+      lastname: joi.string(),
+      city: joi.string()
     });
 
     const { error } = validation.validate(req.body);
@@ -40,7 +43,7 @@ const joi = require("joi");
 };
 
 
- exports.signin = async (req, res, next) => {
+exports.signin = async (req, res, next) => {
   // Authentication
   // req.body : Email and password
 
